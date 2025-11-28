@@ -1,18 +1,13 @@
 # vi /etc/etcd/etcd.conf.yml
 
-ETCD_NAME=etcd-node1
-ETCD_DATA_DIR="/var/lib/etcd"
-
-ETCD_LISTEN_PEER_URLS="http://0.0.0.0:2380"
-ETCD_LISTEN_CLIENT_URLS="http://192.168.40.15:2379,http://0.0.0.0:2379"
-
-ETCD_INITIAL_ADVERTISE_PEER_URLS="http://192.168.40.15:2380"
-ETCD_ADVERTISE_CLIENT_URLS="http://192.168.40.15:2379"
-
-ETCD_INITIAL_CLUSTER="etcd-node1=http://192.168.40.15:2380,etcd-node2=http://192.168.40.20:2380,etcd-node3=http://192.168.40.19:2380"
-ETCD_INITIAL_CLUSTER_STATE="existing"
-ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster-1"
-ETCD_ELECTION_TIMEOUT="10000"
-ETCD_HEARTBEAT_INTERVAL="2000"
-ETCD_INITIAL_ELECTION_TICK_ADVANCE="false"
-#ETCD_ENABLE_V2=true
+name: etcd03 # Изменить на других нодах
+data-dir: /var/lib/etcd/default
+listen-peer-urls: http://0.0.0.0:2380
+listen-client-urls: http://0.0.0.0:2379
+advertise-client-urls: http://192.168.40.15:2379 # Изменить на других нодах
+initial-advertise-peer-urls: http://192.168.40.15:2380 # Изменить на других нодах
+initial-cluster-token: etcd_scope
+initial-cluster: etcd01=http://192.168.40.15:2380,etcd02=http://192.168.40.20:2380,etcd03=http://192.168.40.19:2380
+initial-cluster-state: existing
+election-timeout: 5000
+heartbeat-interval: 500
