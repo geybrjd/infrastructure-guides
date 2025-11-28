@@ -1,0 +1,13 @@
+#vi /etc/etcd/etcd.conf.yml
+
+name: etcd02 # Изменить на других нодах
+data-dir: /var/lib/etcd/default
+listen-peer-urls: http://0.0.0.0:2380
+listen-client-urls: http://0.0.0.0:2379
+advertise-client-urls: http://192.168.40.20:2379 # Изменить на других нодах
+initial-advertise-peer-urls: http://192.168.40.20:2380 # Изменить на других нодах
+initial-cluster-token: etcd_scope
+initial-cluster: etcd01=http://192.168.40.15:2380,etcd02=http://192.168.40.20:2380,etcd03=http://192.168.40.19:2380
+initial-cluster-state: existing
+election-timeout: 5000
+heartbeat-interval: 500
